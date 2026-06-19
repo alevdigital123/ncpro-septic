@@ -1,0 +1,2711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NC-Pro Septic — Septic Pumping & Service, North Carolina</title>
+    <meta name="description"
+        content="Fast, no-mess septic pumping, inspections, repairs and installs for homes and businesses across North Carolina. Licensed, insured, on time.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ============================================================
+   NC-PRO SEPTIC — single-page parallax site
+   Concept: "Below the surface." The page descends from the clean
+   surface into the working depths of a septic system. A vertical
+   sounding-line in aqua marks depth as you scroll. Dark sections =
+   underground; light sections = surface & clean.
+   Primary brand color: #1dd5f7
+   ============================================================ */
+
+        :root {
+            --aqua: #1dd5f7;
+            /* brand primary — clean water */
+            --aqua-600: #12b4d6;
+            /* deeper aqua for hovers/gradients */
+            --aqua-700: #0a92b0;
+            --aqua-glow: rgba(29, 213, 247, .35);
+            --ink: #06161d;
+            /* deepest underground */
+            --depth: #0c2731;
+            /* underground section bg */
+            --depth-2: #103340;
+            /* raised card on dark */
+            --mist: #eef6f8;
+            /* clean pale surface */
+            --paper: #ffffff;
+            --slate: #5d7b86;
+            /* muted captions on light */
+            --slate-d: #90b3bf;
+            /* muted captions on dark */
+            --line-d: rgba(255, 255, 255, .12);
+            --line-l: rgba(8, 40, 50, .12);
+
+            --display: 'Archivo', sans-serif;
+            --body: 'Hanken Grotesk', sans-serif;
+            --mono: 'Spline Sans Mono', monospace;
+
+            --wrap: 1180px;
+            --gutter: clamp(20px, 5vw, 64px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%
+        }
+
+        body {
+            font-family: var(--body);
+            background: var(--ink);
+            color: #0d2730;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        /* ---------- shared layout ---------- */
+        .wrap {
+            max-width: var(--wrap);
+            margin: 0 auto;
+            padding-left: var(--gutter);
+            padding-right: var(--gutter)
+        }
+
+        .block {
+            padding-block: clamp(72px, 11vw, 140px);
+            position: relative
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: .72rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .h-sect {
+            font-family: var(--display);
+            font-weight: 800;
+            line-height: 1.02;
+            letter-spacing: -.02em;
+            font-size: clamp(2rem, 5vw, 3.6rem);
+        }
+
+        .lede {
+            font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+            line-height: 1.65;
+            max-width: 56ch
+        }
+
+        /* surface (light) vs underground (dark) */
+        .surface {
+            background: var(--mist);
+            color: #0d2730
+        }
+
+        .surface-2 {
+            background: var(--paper);
+            color: #0d2730
+        }
+
+        .under {
+            background: var(--depth);
+            color: #eaf6f9
+        }
+
+        .under .eyebrow {
+            color: var(--aqua)
+        }
+
+        .under .lede {
+            color: #bcd6de
+        }
+
+        .surface .eyebrow,
+        .surface-2 .eyebrow {
+            color: var(--aqua-700)
+        }
+
+        .surface .lede,
+        .surface-2 .lede {
+            color: var(--slate)
+        }
+
+        /* ---------- buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .6em;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: .96rem;
+            letter-spacing: .01em;
+            padding: .95em 1.5em;
+            border-radius: 999px;
+            cursor: pointer;
+            border: 1.5px solid transparent;
+            transition: transform .18s ease, box-shadow .25s ease, background .2s ease, color .2s ease, border-color .2s ease;
+            white-space: nowrap;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px
+        }
+
+        .btn-primary {
+            background: var(--aqua);
+            color: #04222b;
+            box-shadow: 0 8px 22px -8px var(--aqua-glow)
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 34px -10px var(--aqua-glow);
+            background: #36dcf9
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: inherit;
+            border-color: currentColor;
+            opacity: .92
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-2px);
+            opacity: 1;
+            border-color: var(--aqua);
+            color: var(--aqua)
+        }
+
+        .btn-dark {
+            background: #04222b;
+            color: #fff
+        }
+
+        .btn-dark:hover {
+            transform: translateY(-2px);
+            background: #0a323e
+        }
+
+        /* ============================================================
+   NAV
+   ============================================================ */
+        .nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px var(--gutter);
+            transition: background .3s ease, padding .3s ease, box-shadow .3s ease, backdrop-filter .3s;
+        }
+
+        .nav.scrolled {
+            background: rgba(6, 22, 29, .82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding-block: 12px;
+            box-shadow: 0 1px 0 var(--line-d);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: #fff;
+            font-family: var(--display);
+            font-weight: 900;
+            letter-spacing: -.01em;
+            font-size: 1.18rem
+        }
+
+        .brand .mark {
+            width: 34px;
+            height: 34px;
+            flex: none;
+            border-radius: 9px;
+            background: linear-gradient(150deg, var(--aqua), var(--aqua-600));
+            display: grid;
+            place-items: center;
+            box-shadow: 0 6px 16px -6px var(--aqua-glow);
+        }
+
+        .brand .mark svg {
+            width: 20px;
+            height: 20px
+        }
+
+        .brand b {
+            color: var(--aqua);
+            font-weight: 900
+        }
+
+        .brand small {
+            display: block;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: .52rem;
+            letter-spacing: .22em;
+            color: var(--slate-d);
+            margin-top: 1px
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px
+        }
+
+        .nav-links a {
+            font-size: .92rem;
+            font-weight: 500;
+            color: #cfe6ec;
+            letter-spacing: .01em;
+            transition: color .18s
+        }
+
+        .nav-links a:hover {
+            color: var(--aqua)
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 14px
+        }
+
+        .nav-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-weight: 500;
+            font-size: .9rem;
+            color: #fff
+        }
+
+        .nav-phone svg {
+            width: 16px;
+            height: 16px;
+            color: var(--aqua)
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1.5px solid var(--line-d);
+            border-radius: 9px;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            position: relative
+        }
+
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            transition: .25s
+        }
+
+        .nav-toggle span::before {
+            top: -6px
+        }
+
+        .nav-toggle span::after {
+            top: 6px
+        }
+
+        /* ============================================================
+   HERO — the surface
+   ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(180deg, #0a2733 0%, #072028 45%, #04161d 100%);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        /* atmospheric layers */
+        .hero-glow {
+            position: absolute;
+            z-index: -3;
+            width: 120vmax;
+            height: 120vmax;
+            left: 50%;
+            top: -40%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, var(--aqua-glow) 0%, transparent 55%);
+            opacity: .45;
+            filter: blur(20px);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            z-index: -3;
+            pointer-events: none;
+            opacity: .5;
+            background:
+                linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(29, 213, 247, .06) 100%),
+                linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(29, 213, 247, .06) 100%);
+            background-size: 64px 64px;
+            mask-image: linear-gradient(180deg, transparent, #000 30%, #000 60%, transparent);
+        }
+
+        /* parallax cutaway band at the bottom of hero */
+        .hero-cutaway {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -2px;
+            z-index: -2;
+            pointer-events: none;
+            will-change: transform
+        }
+
+        .hero-cutaway svg {
+            width: 100%;
+            height: auto;
+            min-width: 1000px
+        }
+
+        .hero-droplets {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none
+        }
+
+        .droplet {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50% 50% 50% 0;
+            background: var(--aqua);
+            opacity: .0;
+            transform: rotate(45deg);
+            filter: drop-shadow(0 0 6px var(--aqua-glow))
+        }
+
+        /* hero photo texture (subject irrelevant — heavy overlay, adds depth) */
+        .hero-photo {
+            position: absolute;
+            inset: 0;
+            z-index: -4;
+            background-size: cover;
+            background-position: center;
+            opacity: .16;
+            filter: grayscale(1) contrast(1.05);
+            mix-blend-mode: luminosity
+        }
+
+        /* ----- treated feature image (branded duotone) ----- */
+        .ph {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #0a2731
+        }
+
+        .ph img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.08) brightness(.95)
+        }
+
+        .ph::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(150deg, rgba(29, 213, 247, .42), rgba(6, 22, 29, .25) 55%, rgba(6, 22, 29, .6));
+            mix-blend-mode: multiply;
+            pointer-events: none
+        }
+
+        .ph .ph-tag {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            z-index: 2;
+            font-family: var(--mono);
+            font-size: .58rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #eaf6f9;
+            background: rgba(6, 22, 29, .55);
+            border: 1px solid var(--line-d);
+            padding: 6px 10px;
+            border-radius: 7px;
+            backdrop-filter: blur(3px)
+        }
+
+        .why-figure {
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        .why-figure .ph {
+            aspect-ratio: 16/10
+        }
+
+        /* ----- parallax photo band (fixed attachment) ----- */
+        .band {
+            position: relative;
+            min-height: 340px;
+            display: flex;
+            align-items: center;
+            background-color: #06161d;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden
+        }
+
+        .band::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(6, 22, 29, .82), rgba(10, 40, 50, .8)), radial-gradient(circle at 75% 10%, var(--aqua-glow), transparent 50%);
+            pointer-events: none
+        }
+
+        .band .wrap {
+            position: relative;
+            z-index: 1;
+            padding-block: 64px
+        }
+
+        .band .eyebrow {
+            color: var(--aqua);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px
+        }
+
+        .band .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--aqua);
+            opacity: .6
+        }
+
+        .band h2 {
+            font-family: var(--display);
+            font-weight: 900;
+            color: #fff;
+            font-size: clamp(1.7rem, 4vw, 3rem);
+            line-height: 1.04;
+            letter-spacing: -.025em;
+            max-width: 18ch
+        }
+
+        .band p {
+            color: #bcd6de;
+            max-width: 50ch;
+            margin-top: 14px;
+            font-size: 1.05rem
+        }
+
+        .band-actions {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        @media (max-width:820px) {
+            .band {
+                background-attachment: scroll
+            }
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding-block: 140px 90px
+        }
+
+        .hero h1 {
+            font-family: var(--display);
+            font-weight: 900;
+            color: #fff;
+            font-size: clamp(2.7rem, 7.2vw, 5.7rem);
+            line-height: .98;
+            letter-spacing: -.035em;
+            max-width: 16ch;
+        }
+
+        .hero h1 .flow {
+            color: var(--aqua);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .hero h1 .flow::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: .06em;
+            height: .09em;
+            border-radius: 2px;
+            background: linear-gradient(90deg, transparent, var(--aqua), transparent);
+            opacity: .7;
+        }
+
+        .hero .eyebrow {
+            color: var(--aqua);
+            margin-bottom: 26px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .hero .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--aqua);
+            opacity: .6
+        }
+
+        .hero p.sub {
+            color: #c4dde4;
+            font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+            max-width: 52ch;
+            margin-top: 26px;
+            line-height: 1.6
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 38px
+        }
+
+        .hero-actions .btn-ghost {
+            color: #dff3f8
+        }
+
+        /* gauge chips */
+        .gauges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 54px
+        }
+
+        .gauge {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 13px 18px;
+            border: 1px solid var(--line-d);
+            border-radius: 13px;
+            background: rgba(255, 255, 255, .03);
+            backdrop-filter: blur(4px);
+        }
+
+        .gauge .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--aqua);
+            box-shadow: 0 0 0 4px var(--aqua-glow);
+            flex: none
+        }
+
+        .gauge b {
+            font-family: var(--display);
+            font-weight: 700;
+            color: #fff;
+            font-size: .95rem;
+            display: block;
+            line-height: 1.15
+        }
+
+        .gauge small {
+            font-family: var(--mono);
+            font-size: .62rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--slate-d)
+        }
+
+        .scroll-cue {
+            position: absolute;
+            left: 50%;
+            bottom: 26px;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: .6rem;
+            letter-spacing: .24em;
+            text-transform: uppercase;
+            color: var(--slate-d)
+        }
+
+        .scroll-cue .mouse {
+            width: 22px;
+            height: 34px;
+            border: 1.5px solid var(--slate-d);
+            border-radius: 12px;
+            position: relative
+        }
+
+        .scroll-cue .mouse::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 7px;
+            width: 3px;
+            height: 6px;
+            border-radius: 2px;
+            background: var(--aqua);
+            transform: translateX(-50%);
+            animation: wheel 1.6s ease-in-out infinite
+        }
+
+        @keyframes wheel {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, 0)
+            }
+
+            30% {
+                opacity: 1
+            }
+
+            60% {
+                opacity: 1;
+                transform: translate(-50%, 8px)
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, 10px)
+            }
+        }
+
+        /* ============================================================
+   DEPTH RAIL (signature) — left sounding line
+   ============================================================ */
+        .rail {
+            position: fixed;
+            left: max(18px, calc((100vw - var(--wrap))/2 - 56px));
+            top: 0;
+            height: 100vh;
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            pointer-events: none
+        }
+
+        .rail-line {
+            position: relative;
+            width: 1px;
+            height: 62vh;
+            margin-left: 6px;
+            background: linear-gradient(180deg, transparent, var(--line-d) 12%, var(--line-d) 88%, transparent)
+        }
+
+        .rail-line::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1px;
+            height: var(--prog, 0%);
+            background: linear-gradient(180deg, var(--aqua), var(--aqua-700));
+            box-shadow: 0 0 10px var(--aqua-glow);
+            transition: height .15s linear
+        }
+
+        .rail-tick {
+            position: absolute;
+            left: 6px;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .rail-tick i {
+            display: block;
+            width: 8px;
+            height: 1px;
+            background: var(--slate-d);
+            transition: .2s
+        }
+
+        .rail-tick span {
+            font-family: var(--mono);
+            font-size: .56rem;
+            letter-spacing: .12em;
+            color: var(--slate-d);
+            white-space: nowrap;
+            transition: .2s
+        }
+
+        .rail-tick.on i {
+            width: 16px;
+            background: var(--aqua)
+        }
+
+        .rail-tick.on span {
+            color: var(--aqua)
+        }
+
+        /* ============================================================
+   TRUST STRIP
+   ============================================================ */
+        .trust {
+            background: var(--aqua);
+            color: #04222b;
+            border-top: 1px solid rgba(4, 34, 43, .12)
+        }
+
+        .trust .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 14px 38px;
+            padding-block: 24px
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: .96rem
+        }
+
+        .trust-item svg {
+            width: 19px;
+            height: 19px
+        }
+
+        .trust-sep {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(4, 34, 43, .45)
+        }
+
+        /* ============================================================
+   SERVICES
+   ============================================================ */
+        .sect-head {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            margin-bottom: 56px;
+            max-width: 780px
+        }
+
+        .sect-head .h-sect {
+            margin-top: 4px
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line-l);
+            border-radius: 18px;
+            padding: 30px 28px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .25s ease, box-shadow .3s ease, border-color .25s;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, var(--aqua), var(--aqua-600));
+            transition: width .35s ease
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 26px 50px -28px rgba(8, 40, 50, .45);
+            border-color: transparent
+        }
+
+        .card:hover::before {
+            width: 100%
+        }
+
+        .card-ico {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(150deg, #e3f8fd, #cdf1fa);
+            color: var(--aqua-700);
+            margin-bottom: 20px
+        }
+
+        .card-ico svg {
+            width: 26px;
+            height: 26px
+        }
+
+        .card h3 {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 1.22rem;
+            color: #0d2730;
+            margin-bottom: 9px;
+            letter-spacing: -.01em
+        }
+
+        .card p {
+            color: var(--slate);
+            font-size: .98rem;
+            line-height: 1.6
+        }
+
+        .card .more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-family: var(--mono);
+            font-size: .72rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--aqua-700);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: .25s
+        }
+
+        .card:hover .more {
+            opacity: 1;
+            transform: translateX(0)
+        }
+
+        /* ============================================================
+   PROCESS — underground, real 4-step sequence
+   ============================================================ */
+        .proc-wrap {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: clamp(30px, 6vw, 80px);
+            align-items: start
+        }
+
+        .proc-figure {
+            position: sticky;
+            top: 120px
+        }
+
+        .proc-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 14px
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 22px;
+            align-items: start;
+            padding: 24px 26px;
+            border: 1px solid var(--line-d);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .02);
+            transition: border-color .25s, background .25s, transform .25s;
+        }
+
+        .step:hover {
+            border-color: rgba(29, 213, 247, .5);
+            background: rgba(29, 213, 247, .05);
+            transform: translateX(4px)
+        }
+
+        .step-num {
+            font-family: var(--mono);
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--aqua);
+            padding-top: 2px;
+            letter-spacing: .05em
+        }
+
+        .step h4 {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 1.18rem;
+            color: #fff;
+            margin-bottom: 6px
+        }
+
+        .step p {
+            color: #b4d2db;
+            font-size: .97rem;
+            line-height: 1.55
+        }
+
+        .cut-card {
+            border: 1px solid var(--line-d);
+            border-radius: 20px;
+            background: linear-gradient(180deg, #0e2e3a, #0a242e);
+            padding: 26px;
+            overflow: hidden
+        }
+
+        .cut-card svg {
+            width: 100%;
+            height: auto
+        }
+
+        .cut-cap {
+            font-family: var(--mono);
+            font-size: .62rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--slate-d);
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .cut-cap::before {
+            content: "";
+            width: 18px;
+            height: 1px;
+            background: var(--aqua)
+        }
+
+        /* ============================================================
+   WHY US
+   ============================================================ */
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: clamp(34px, 6vw, 76px);
+            align-items: center
+        }
+
+        .why-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 30px
+        }
+
+        .why-row {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line-l)
+        }
+
+        .why-row:last-child {
+            border-bottom: none
+        }
+
+        .why-check {
+            flex: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: #e3f8fd;
+            color: var(--aqua-700);
+            display: grid;
+            place-items: center;
+            margin-top: 2px
+        }
+
+        .why-check svg {
+            width: 17px;
+            height: 17px
+        }
+
+        .why-row b {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 1.06rem;
+            color: #0d2730;
+            display: block;
+            margin-bottom: 2px
+        }
+
+        .why-row span {
+            color: var(--slate);
+            font-size: .96rem
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .stat {
+            background: linear-gradient(165deg, #0c2731, #0a212a);
+            color: #fff;
+            border-radius: 18px;
+            padding: 30px 26px;
+            border: 1px solid rgba(29, 213, 247, .18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat::after {
+            content: "";
+            position: absolute;
+            right: -30px;
+            bottom: -30px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--aqua-glow);
+            filter: blur(18px)
+        }
+
+        .stat .num {
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: clamp(2.1rem, 4vw, 2.9rem);
+            line-height: 1;
+            color: var(--aqua);
+            letter-spacing: -.02em
+        }
+
+        .stat .lab {
+            font-family: var(--mono);
+            font-size: .64rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #9fc4cf;
+            margin-top: 12px;
+            position: relative;
+            z-index: 1
+        }
+
+        /* ============================================================
+   SERVICE AREA — underground
+   ============================================================ */
+        .area-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(30px, 6vw, 70px);
+            align-items: center
+        }
+
+        .area-map {
+            border: 1px solid var(--line-d);
+            border-radius: 20px;
+            background: linear-gradient(180deg, #0e2e3a, #0a242e);
+            padding: 30px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .area-map svg {
+            width: 100%;
+            height: auto
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px
+        }
+
+        .chip {
+            font-family: var(--mono);
+            font-size: .74rem;
+            letter-spacing: .04em;
+            padding: 9px 15px;
+            border: 1px solid var(--line-d);
+            border-radius: 999px;
+            color: #cfe6ec;
+            background: rgba(255, 255, 255, .02);
+            transition: .2s
+        }
+
+        .chip:hover {
+            border-color: var(--aqua);
+            color: var(--aqua)
+        }
+
+        .flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: var(--mono);
+            font-size: .6rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #ffd27a;
+            border: 1px dashed rgba(255, 210, 122, .5);
+            padding: 5px 10px;
+            border-radius: 7px;
+            margin-top: 18px
+        }
+
+        .flag svg {
+            width: 13px;
+            height: 13px
+        }
+
+        /* ============================================================
+   REVIEWS
+   ============================================================ */
+        .rev-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 48px
+        }
+
+        .rev {
+            background: var(--paper);
+            border: 1px solid var(--line-l);
+            border-radius: 18px;
+            padding: 30px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative
+        }
+
+        .rev .stars {
+            display: flex;
+            gap: 3px;
+            color: var(--aqua-600)
+        }
+
+        .rev .stars svg {
+            width: 18px;
+            height: 18px
+        }
+
+        .rev p {
+            color: #33555f;
+            font-size: 1rem;
+            line-height: 1.6;
+            flex: 1
+        }
+
+        .rev .who {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .rev .av {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(150deg, var(--aqua), var(--aqua-600));
+            display: grid;
+            place-items: center;
+            color: #04222b;
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 1rem;
+            flex: none
+        }
+
+        .rev .who b {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: .98rem;
+            color: #0d2730;
+            display: block
+        }
+
+        .rev .who small {
+            color: var(--slate);
+            font-size: .84rem
+        }
+
+        /* ============================================================
+   CTA BAND + FORM
+   ============================================================ */
+        .cta {
+            background: linear-gradient(135deg, var(--aqua) 0%, var(--aqua-600) 55%, var(--aqua-700) 100%);
+            color: #04222b;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 80% -10%, rgba(255, 255, 255, .4), transparent 45%);
+            pointer-events: none
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1fr .9fr;
+            gap: clamp(34px, 6vw, 70px);
+            align-items: center;
+            position: relative;
+            z-index: 1
+        }
+
+        .cta .eyebrow {
+            color: #04343f
+        }
+
+        .cta h2 {
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: clamp(2rem, 4.6vw, 3.3rem);
+            line-height: 1.02;
+            letter-spacing: -.025em;
+            color: #042730;
+            margin: 14px 0 16px
+        }
+
+        .cta p {
+            color: #063a47;
+            font-size: 1.1rem;
+            max-width: 46ch;
+            line-height: 1.6
+        }
+
+        .cta-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 30px;
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            color: #042730;
+            letter-spacing: -.01em
+        }
+
+        .cta-phone .ring {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #042730;
+            color: var(--aqua);
+            display: grid;
+            place-items: center;
+            flex: none;
+            box-shadow: 0 10px 24px -10px rgba(4, 39, 48, .6)
+        }
+
+        .cta-phone .ring svg {
+            width: 24px;
+            height: 24px
+        }
+
+        .cta-phone small {
+            display: block;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: .6rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: #0a4250
+        }
+
+        .form-card {
+            background: #062b35;
+            color: #eaf6f9;
+            border-radius: 22px;
+            padding: clamp(26px, 3.5vw, 38px);
+            box-shadow: 0 40px 80px -40px rgba(2, 20, 26, .7)
+        }
+
+        .form-card h3 {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 6px
+        }
+
+        .form-card .fc-sub {
+            color: #a9cdd6;
+            font-size: .92rem;
+            margin-bottom: 22px
+        }
+
+        .field {
+            margin-bottom: 15px
+        }
+
+        .field label {
+            display: block;
+            font-family: var(--mono);
+            font-size: .62rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #8fb6c1;
+            margin-bottom: 7px
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid var(--line-d);
+            border-radius: 11px;
+            padding: 13px 15px;
+            color: #fff;
+            font-family: var(--body);
+            font-size: .97rem;
+            transition: border-color .2s, background .2s;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: #6f939e
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: var(--aqua);
+            background: rgba(29, 213, 247, .07)
+        }
+
+        .field select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238fb6c1' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .form-card .btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: 6px
+        }
+
+        .form-note {
+            font-family: var(--mono);
+            font-size: .62rem;
+            letter-spacing: .04em;
+            color: #7ea4af;
+            margin-top: 14px;
+            text-align: center
+        }
+
+        .form-ok {
+            display: none;
+            text-align: center;
+            padding: 18px 0
+        }
+
+        .form-ok.show {
+            display: block
+        }
+
+        .form-ok .ok-ring {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--aqua);
+            color: #04222b;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 16px
+        }
+
+        .form-ok .ok-ring svg {
+            width: 30px;
+            height: 30px
+        }
+
+        .form-ok b {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #fff;
+            display: block;
+            margin-bottom: 6px
+        }
+
+        .form-ok span {
+            color: #a9cdd6;
+            font-size: .92rem
+        }
+
+        /* ============================================================
+   FOOTER
+   ============================================================ */
+        .foot {
+            background: var(--ink);
+            color: #cfe6ec;
+            padding-block: 72px 30px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .foot-glow {
+            position: absolute;
+            left: 50%;
+            top: -60%;
+            width: 90vmax;
+            height: 90vmax;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(29, 213, 247, .12), transparent 55%);
+            pointer-events: none
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 1
+        }
+
+        .foot .brand {
+            margin-bottom: 18px
+        }
+
+        .foot-about {
+            color: #90b3bf;
+            font-size: .95rem;
+            max-width: 34ch;
+            line-height: 1.6
+        }
+
+        .foot h5 {
+            font-family: var(--mono);
+            font-size: .66rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--aqua);
+            margin-bottom: 18px
+        }
+
+        .foot ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px
+        }
+
+        .foot ul a,
+        .foot ul li {
+            color: #b4d2db;
+            font-size: .94rem;
+            transition: color .18s
+        }
+
+        .foot ul a:hover {
+            color: var(--aqua)
+        }
+
+        .foot-contact li {
+            display: flex;
+            gap: 11px;
+            align-items: flex-start
+        }
+
+        .foot-contact svg {
+            width: 17px;
+            height: 17px;
+            color: var(--aqua);
+            flex: none;
+            margin-top: 3px
+        }
+
+        .socials {
+            display: flex;
+            gap: 11px;
+            margin-top: 18px
+        }
+
+        .socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--line-d);
+            display: grid;
+            place-items: center;
+            color: #cfe6ec;
+            transition: .2s
+        }
+
+        .socials a:hover {
+            border-color: var(--aqua);
+            color: var(--aqua);
+            transform: translateY(-2px)
+        }
+
+        .socials svg {
+            width: 19px;
+            height: 19px
+        }
+
+        .foot-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 54px;
+            padding-top: 24px;
+            border-top: 1px solid var(--line-d);
+            position: relative;
+            z-index: 1;
+            font-size: .85rem;
+            color: #7ea4af;
+            font-family: var(--mono);
+            letter-spacing: .02em
+        }
+
+        /* mobile sticky call bar */
+        .mobicall {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 55;
+            display: none;
+            padding: 11px 14px;
+            background: rgba(6, 22, 29, .92);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--line-d);
+            gap: 10px
+        }
+
+        .mobicall .btn {
+            flex: 1;
+            justify-content: center;
+            font-size: .92rem;
+            padding: .85em 1em
+        }
+
+        /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+        @media (max-width:980px) {
+            .rail {
+                display: none
+            }
+
+            .cards,
+            .rev-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .proc-wrap {
+                grid-template-columns: 1fr
+            }
+
+            .proc-figure {
+                position: static;
+                margin-bottom: 8px
+            }
+
+            .why-grid,
+            .area-grid,
+            .cta-grid {
+                grid-template-columns: 1fr
+            }
+
+            .why-grid .stat-grid {
+                order: -1
+            }
+        }
+
+        @media (max-width:760px) {
+            .nav-links {
+                position: fixed;
+                inset: 0 0 auto 0;
+                top: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                background: rgba(6, 22, 29, .97);
+                backdrop-filter: blur(14px);
+                padding: 90px 24px 26px;
+                transform: translateY(-100%);
+                transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+                box-shadow: 0 20px 40px -20px rgba(0, 0, 0, .6);
+            }
+
+            .nav-links.open {
+                transform: translateY(0)
+            }
+
+            .nav-links a {
+                padding: 15px 0;
+                border-bottom: 1px solid var(--line-d);
+                font-size: 1.05rem
+            }
+
+            .nav-toggle {
+                display: flex
+            }
+
+            .nav-phone {
+                display: none
+            }
+
+            .nav.open-menu .nav-toggle span {
+                background: transparent
+            }
+
+            .nav.open-menu .nav-toggle span::before {
+                top: 0;
+                transform: rotate(45deg)
+            }
+
+            .nav.open-menu .nav-toggle span::after {
+                top: 0;
+                transform: rotate(-45deg)
+            }
+
+            .cards,
+            .rev-grid {
+                grid-template-columns: 1fr
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .field-row {
+                grid-template-columns: 1fr
+            }
+
+            .foot-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .mobicall {
+                display: flex
+            }
+
+            body {
+                padding-bottom: 66px
+            }
+
+            .trust .wrap {
+                gap: 10px 22px
+            }
+
+            .hero-inner {
+                padding-block: 120px 110px
+            }
+        }
+
+        @media (max-width:440px) {
+            .foot-grid {
+                grid-template-columns: 1fr
+            }
+
+            .gauges {
+                gap: 10px
+            }
+
+            .gauge {
+                padding: 11px 14px
+            }
+        }
+
+        /* reduced motion */
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .hero-cutaway {
+                transform: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ NAV ============ -->
+    <nav class="nav" id="nav">
+        <a href="#top" class="brand" aria-label="NC-Pro Septic home">
+            <span class="mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#04222b" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 2.5c3.6 4.2 6 7 6 10a6 6 0 0 1-12 0c0-3 2.4-5.8 6-10Z" />
+                </svg>
+            </span>
+            <span>NC<b>·</b>PRO SEPTIC<small>PUMPING &amp; SERVICE · NC</small></span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#services">Services</a>
+            <a href="#process">How it works</a>
+            <a href="#area">Service area</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-cta">
+            <!-- TODO: replace phone number everywhere -->
+            <a class="nav-phone" href="tel:+1XXXXXXXXXX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+                </svg>(XXX) XXX-XXXX</a>
+            <a class="btn btn-primary" href="#contact">Request service</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"
+                aria-expanded="false"><span></span></button>
+        </div>
+    </nav>
+
+    <span id="top"></span>
+
+    <!-- ============ HERO ============ -->
+    <header class="hero" id="hero">
+        <!-- PLACEHOLDER PHOTO (license-free, generic) — swap the URL for a photo of your truck/crew/a local home -->
+        <div class="hero-photo" style="background-image:url('https://picsum.photos/seed/ncpro-yard/1920/1280')"
+            aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-droplets" id="droplets" aria-hidden="true"></div>
+
+        <!-- parallax cutaway: surface line, pump truck, buried tank + drain field -->
+        <div class="hero-cutaway" id="cutaway" aria-hidden="true">
+            <svg viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#0d3441" />
+                        <stop offset="1" stop-color="#061a22" />
+                    </linearGradient>
+                    <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#1dd5f7" stop-opacity="0" />
+                        <stop offset=".5" stop-color="#1dd5f7" stop-opacity=".9" />
+                        <stop offset="1" stop-color="#1dd5f7" stop-opacity="0" />
+                    </linearGradient>
+                </defs>
+                <!-- ground mass -->
+                <path d="M0,150 C260,120 420,138 720,132 C1010,126 1180,150 1440,140 L1440,420 L0,420 Z"
+                    fill="url(#soil)" />
+                <!-- surface grass line -->
+                <path d="M0,150 C260,120 420,138 720,132 C1010,126 1180,150 1440,140" fill="none" stroke="#1dd5f7"
+                    stroke-opacity=".5" stroke-width="2" />
+                <!-- buried tank -->
+                <g transform="translate(905,196)">
+                    <rect x="0" y="0" width="190" height="92" rx="14" fill="#0a2731" stroke="#1dd5f7"
+                        stroke-opacity=".45" stroke-width="1.5" />
+                    <rect x="0" y="0" width="92" height="92" rx="14" fill="none" stroke="#1dd5f7" stroke-opacity=".25"
+                        stroke-width="1.2" />
+                    <rect x="0" y="44" width="190" height="48" fill="#0e3a47" opacity=".55" />
+                    <rect x="22" y="-12" width="20" height="14" rx="3" fill="#0a2731" stroke="#1dd5f7"
+                        stroke-opacity=".4" />
+                    <rect x="150" y="-12" width="20" height="14" rx="3" fill="#0a2731" stroke="#1dd5f7"
+                        stroke-opacity=".4" />
+                </g>
+                <!-- inlet pipe from house -->
+                <path d="M740,205 L905,222" stroke="#1dd5f7" stroke-opacity=".4" stroke-width="6" fill="none"
+                    stroke-linecap="round" />
+                <!-- water-table streak -->
+                <path d="M0,300 C400,288 760,312 1120,296 C1280,289 1380,300 1440,296" stroke="url(#water)"
+                    stroke-width="2.5" fill="none" />
+                <!-- drain-field laterals -->
+                <g stroke="#1dd5f7" stroke-opacity=".3" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round">
+                    <path d="M80,250 L640,250" />
+                    <path d="M80,278 L640,278" />
+                    <path d="M80,306 L640,306" />
+                </g>
+                <!-- vacuum / pump truck on the surface -->
+                <g transform="translate(150,70)">
+                    <!-- tank body -->
+                    <rect x="40" y="22" width="150" height="48" rx="24" fill="#0e3a47" stroke="#1dd5f7"
+                        stroke-opacity=".55" stroke-width="1.5" />
+                    <circle cx="40" cy="46" r="24" fill="#0a2c37" stroke="#1dd5f7" stroke-opacity=".4"
+                        stroke-width="1.5" />
+                    <!-- cab -->
+                    <path d="M190,40 h26 a8 8 0 0 1 8 8 v22 h-34 Z" fill="#0e3a47" stroke="#1dd5f7" stroke-opacity=".55"
+                        stroke-width="1.5" />
+                    <rect x="196" y="46" width="20" height="14" rx="3" fill="#1dd5f7" fill-opacity=".25" />
+                    <!-- chassis -->
+                    <rect x="36" y="70" width="190" height="8" rx="3" fill="#0a2c37" />
+                    <!-- wheels -->
+                    <circle cx="80" cy="82" r="11" fill="#06181f" stroke="#1dd5f7" stroke-opacity=".5"
+                        stroke-width="2" />
+                    <circle cx="180" cy="82" r="11" fill="#06181f" stroke="#1dd5f7" stroke-opacity=".5"
+                        stroke-width="2" />
+                    <!-- hose to tank -->
+                    <path d="M40,70 C30,110 30,150 60,162 C140,196 220,170 290,180" fill="none" stroke="#1dd5f7"
+                        stroke-opacity=".5" stroke-width="4" stroke-linecap="round" />
+                </g>
+            </svg>
+        </div>
+
+        <div class="wrap hero-inner">
+            <span class="eyebrow">Licensed Septic Pumping · North Carolina</span>
+            <h1>Pumped, cleaned, and&nbsp;<span class="flow">flowing</span> again.</h1>
+            <p class="sub">No-mess septic pumping and full system service for homes and businesses across North
+                Carolina. We show up on time, leave the yard the way we found it, and tell you straight when you're due
+                next.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#contact">Request service
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                </a>
+                <a class="btn btn-ghost" href="tel:+1XXXXXXXXXX">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+                    </svg>
+                    Call (XXX) XXX-XXXX
+                </a>
+            </div>
+
+            <div class="gauges">
+                <div class="gauge"><span class="dot"></span>
+                    <div><b>Same-week slots</b><small>Scheduling</small></div>
+                </div>
+                <div class="gauge"><span class="dot"></span>
+                    <div><b>Licensed &amp; insured</b><small>NC permitted</small></div>
+                </div>
+                <div class="gauge"><span class="dot"></span>
+                    <div><b>Upfront pricing</b><small>No surprises</small></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span>Descend</div>
+    </header>
+
+    <!-- ============ DEPTH RAIL ============ -->
+    <aside class="rail" id="rail" aria-hidden="true">
+        <div class="rail-line" id="railLine"></div>
+    </aside>
+
+    <!-- ============ TRUST STRIP ============ -->
+    <section class="trust">
+        <div class="wrap">
+            <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12l2 2 4-4" />
+                    <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" />
+                </svg>NC-Licensed</span>
+            <span class="trust-sep"></span>
+            <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+                </svg>Fully Insured</span>
+            <span class="trust-sep"></span>
+            <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" />
+                </svg>Family Owned</span>
+            <span class="trust-sep"></span>
+            <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" />
+                </svg>Emergency Service</span>
+        </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="block surface" id="services">
+        <div class="wrap">
+            <div class="sect-head">
+                <span class="eyebrow">— What we handle</span>
+                <h2 class="h-sect">Every job a septic system will ever ask&nbsp;for.</h2>
+                <p class="lede">From a routine pump-out to a full system install, one crew handles the whole life of
+                    your tank — so you're not chasing three different companies when something goes wrong.</p>
+            </div>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6Z" />
+                            <path d="M9 12V7a3 3 0 0 1 6 0v5" />
+                            <path d="M3 12h2M19 12h2" />
+                        </svg></div>
+                    <h3>Septic Tank Pumping</h3>
+                    <p>Routine pump-outs that clear out solids and sludge before they cause a backup. Most homes need it
+                        every 3–5 years.</p>
+                    <span class="more">Book a pump-out <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></span>
+                </article>
+                <article class="card">
+                    <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7" />
+                            <path d="m21 21-4.3-4.3" />
+                            <path d="M11 8v6M8 11h6" />
+                        </svg></div>
+                    <h3>Inspections &amp; Reports</h3>
+                    <p>Pre-sale and routine inspections with a clear written report — what we found, what's wearing, and
+                        what it'll take to fix.</p>
+                    <span class="more">Schedule inspection <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></span>
+                </article>
+                <article class="card">
+                    <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5Z" />
+                        </svg></div>
+                    <h3>Repairs &amp; Replacements</h3>
+                    <p>Filters, baffles, lids, risers, distribution boxes and effluent pumps — repaired or replaced
+                        without tearing up the whole yard.</p>
+                    <span class="more">Get it fixed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></span>
+                </article>
+                <article class="card">
+                    <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18M5 21v-9l7-5 7 5v9" />
+                            <path d="M9 21v-5h6v5" />
+                            <path d="m9 7 3-2 3 2" />
+                        </svg></div>
+                    <h3>New System Installs</h3>
+                    <p>Full installs and replacements sized to your soil, water table and household — built to pass
+                        inspection and last for decades.</p>
+                    <span class="more">Plan an install <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></span>
+                </article>
+                <article class="card">
+                    <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 7h18M5 7v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7" />
+                            <path d="M9 7V5a3 3 0 0 1 6 0v2" />
+                            <path d="M8 12h.01M12 12h.01M16 12h.01" />
+                        </svg></div>
+                    <h3>Drain Field Service</h3>
+                    <p>Soggy yard, slow drains, standing water? We diagnose failing fields and get them draining the way
+                        they should again.</p>
+                    <span class="more">Diagnose my field <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></span>
+                </article>
+                <article class="card">
+                    <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18M6 21V8h12v13" />
+                            <path d="M9 21v-4h6v4M9 12h.01M15 12h.01" />
+                        </svg></div>
+                    <h3>Commercial &amp; Grease Traps</h3>
+                    <p>Pumping, grease-trap cleaning and scheduled maintenance for restaurants, rentals and multi-unit
+                        properties.</p>
+                    <span class="more">Set up service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PARALLAX PHOTO BAND 1 ============ -->
+    <!-- PLACEHOLDER PHOTO (license-free, generic) — swap seed URL for a real job-site / pump-truck photo -->
+    <section class="band" style="background-image:url('https://picsum.photos/seed/ncpro-field/1920/900')"
+        aria-label="Septic service across North Carolina">
+        <div class="wrap">
+            <span class="eyebrow">— Out in the field, every day</span>
+            <h2>What's below shouldn't be something you think about.</h2>
+            <p>That's our job. We keep your tank pumped, your field draining, and your system quietly doing what it's
+                supposed to — so you can forget it's even there.</p>
+            <div class="band-actions">
+                <a class="btn btn-primary" href="#contact">Book a pump-out</a>
+                <a class="btn btn-ghost" style="color:#dff3f8" href="#process">See how it works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="block under" id="process" data-depth="−3 ft · TANK">
+        <div class="wrap proc-wrap">
+            <div class="proc-figure">
+                <div class="cut-card">
+                    <svg viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cwater2" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#1dd5f7" stop-opacity=".55" />
+                                <stop offset="1" stop-color="#1dd5f7" stop-opacity=".15" />
+                            </linearGradient>
+                        </defs>
+                        <!-- soil layers -->
+                        <rect x="0" y="0" width="360" height="58" fill="#0f3340" />
+                        <rect x="0" y="58" width="360" height="242" fill="#0b2832" />
+                        <path d="M0,58 H360" stroke="#1dd5f7" stroke-opacity=".4" stroke-width="1.5" />
+                        <!-- grass tufts -->
+                        <g stroke="#1dd5f7" stroke-opacity=".5" stroke-width="2" stroke-linecap="round">
+                            <path d="M30,58 v-10M36,58 v-14M42,58 v-9" />
+                            <path d="M300,58 v-10M306,58 v-14M312,58 v-9" />
+                        </g>
+                        <!-- house stub + inlet -->
+                        <path d="M20,40 h34 v18 h-34Z" fill="#0e3a47" stroke="#1dd5f7" stroke-opacity=".4" />
+                        <path d="M54,84 H120" stroke="#1dd5f7" stroke-opacity=".5" stroke-width="6"
+                            stroke-linecap="round" />
+                        <!-- tank -->
+                        <rect x="118" y="92" width="150" height="118" rx="14" fill="#0a242e" stroke="#1dd5f7"
+                            stroke-opacity=".55" stroke-width="1.6" />
+                        <rect x="118" y="150" width="150" height="60" rx="0" fill="url(#cwater2)" />
+                        <line x1="193" y1="92" x2="193" y2="210" stroke="#1dd5f7" stroke-opacity=".3" stroke-width="1.4"
+                            stroke-dasharray="3 5" />
+                        <!-- risers -->
+                        <rect x="138" y="78" width="20" height="16" rx="3" fill="#0e3a47" stroke="#1dd5f7"
+                            stroke-opacity=".4" />
+                        <rect x="228" y="78" width="20" height="16" rx="3" fill="#0e3a47" stroke="#1dd5f7"
+                            stroke-opacity=".4" />
+                        <!-- outlet to field -->
+                        <path d="M268,150 H340" stroke="#1dd5f7" stroke-opacity=".5" stroke-width="6"
+                            stroke-linecap="round" />
+                        <!-- pump hose into riser -->
+                        <path d="M148,78 C150,40 250,30 300,20" fill="none" stroke="#1dd5f7" stroke-opacity=".7"
+                            stroke-width="3.5" stroke-linecap="round" />
+                        <circle cx="148" cy="86" r="5" fill="#1dd5f7" />
+                        <!-- depth ticks -->
+                        <g font-family="'Spline Sans Mono',monospace" font-size="9" fill="#5d7b86" letter-spacing="1">
+                            <text x="284" y="100">0ft</text>
+                            <text x="284" y="158">−3ft</text>
+                            <text x="284" y="206">−5ft</text>
+                        </g>
+                    </svg>
+                    <div class="cut-cap">Typical residential layout — every system is a little different</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="sect-head" style="margin-bottom:34px">
+                    <span class="eyebrow">— How a pump-out goes</span>
+                    <h2 class="h-sect">Four steps, start to&nbsp;finish.</h2>
+                    <p class="lede">No mystery, no upsell. Here's exactly what happens from the moment you call to the
+                        moment we pull out of the driveway.</p>
+                </div>
+                <div class="proc-steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div>
+                            <h4>Call &amp; schedule</h4>
+                            <p>Tell us your address and roughly when the tank was last pumped. We'll book you into a
+                                same-week slot and call ahead before we arrive.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div>
+                            <h4>Locate &amp; uncover</h4>
+                            <p>We find the tank, expose the lids, and check sludge levels, baffles and overall condition
+                                as we open it up.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">03</div>
+                        <div>
+                            <h4>Pump &amp; clean</h4>
+                            <p>We vacuum out every bit of solids and liquid, then rinse the tank down so it's genuinely
+                                empty — not just skimmed off the top.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">04</div>
+                        <div>
+                            <h4>Inspect &amp; advise</h4>
+                            <p>We check the filter and outlet, button everything back up, and tell you the real date
+                                you'll be due again. Yard left clean.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHY US ============ -->
+    <section class="block surface-2" id="why" data-depth="GRADE">
+        <div class="wrap why-grid">
+            <div>
+                <span class="eyebrow">— Why people call us back</span>
+                <h2 class="h-sect" style="margin:14px 0 6px">Septic done the way<br>you'd want it done.</h2>
+                <p class="lede">It's not a glamorous job — but the difference between a good septic company and a bad
+                    one is whether they show up, do it cleanly, and shoot straight. That's the whole pitch.</p>
+                <div class="why-list">
+                    <div class="why-row"><span class="why-check"><svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 13l4 4L19 7" />
+                            </svg></span>
+                        <div><b>On time, and we call ahead</b><span>You get a heads-up before we roll up — no all-day
+                                waiting window.</span></div>
+                    </div>
+                    <div class="why-row"><span class="why-check"><svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 13l4 4L19 7" />
+                            </svg></span>
+                        <div><b>No mess left behind</b><span>Lids reset, ground raked back, hoses cleaned up. You'd
+                                barely know we were there.</span></div>
+                    </div>
+                    <div class="why-row"><span class="why-check"><svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 13l4 4L19 7" />
+                            </svg></span>
+                        <div><b>Straight answers, fair pricing</b><span>We quote before we dig. If something's wrong, we
+                                tell you — and what it'll honestly cost to fix.</span></div>
+                    </div>
+                    <div class="why-row"><span class="why-check"><svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 13l4 4L19 7" />
+                            </svg></span>
+                        <div><b>One crew who knows your system</b><span>We keep records, so next time we already know
+                                your tank, its layout and its history.</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="why-figure">
+                <!-- PLACEHOLDER PHOTO (license-free, generic) — swap for a photo of your crew or a finished job -->
+                <div class="ph"><img src="https://picsum.photos/seed/ncpro-crew/960/600"
+                        alt="NC-Pro Septic crew on a service call" loading="lazy"><span class="ph-tag">Sample photo ·
+                        replace</span></div>
+                <div class="stat-grid">
+                    <!-- TODO: replace stat figures with your real numbers -->
+                    <div class="stat">
+                        <div class="num">3,000+</div>
+                        <div class="lab">Tanks pumped*</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num">5.0★</div>
+                        <div class="lab">Customer rating*</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num">Same wk</div>
+                        <div class="lab">Typical wait</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num">20+ yrs</div>
+                        <div class="lab">In the field*</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SERVICE AREA ============ -->
+    <section class="block under" id="area" data-depth="−5 ft · FIELD">
+        <div class="wrap area-grid">
+            <div class="area-map">
+                <!-- stylized NC silhouette (decorative) -->
+                <svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" role="img"
+                    aria-label="North Carolina service map">
+                    <defs>
+                        <radialGradient id="ncglow" cx="55%" cy="45%" r="60%">
+                            <stop offset="0" stop-color="#1dd5f7" stop-opacity=".22" />
+                            <stop offset="1" stop-color="#1dd5f7" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                    <rect x="0" y="0" width="420" height="180" fill="url(#ncglow)" />
+                    <path
+                        d="M14,86 L70,70 L150,60 L240,52 L330,58 L398,40 L406,58 L372,74 L378,96 L350,108 L300,118 L250,126 L170,128 L150,150 L120,150 L108,128 L60,120 L24,110 Z"
+                        fill="#0a2731" stroke="#1dd5f7" stroke-opacity=".55" stroke-width="1.6"
+                        stroke-linejoin="round" />
+                    <!-- service pins -->
+                    <g fill="#1dd5f7">
+                        <circle cx="150" cy="92" r="5" />
+                        <circle cx="220" cy="84" r="5" />
+                        <circle cx="290" cy="92" r="5" />
+                        <circle cx="110" cy="104" r="4" />
+                        <circle cx="250" cy="104" r="4" />
+                    </g>
+                    <g stroke="#1dd5f7" stroke-opacity=".3" stroke-width="1" fill="none">
+                        <circle cx="150" cy="92" r="12" />
+                        <circle cx="220" cy="84" r="12" />
+                        <circle cx="290" cy="92" r="12" />
+                    </g>
+                </svg>
+                <div class="flag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+                    </svg> Map is decorative — set your real counties below</div>
+            </div>
+            <div>
+                <span class="eyebrow">— Where we work</span>
+                <h2 class="h-sect" style="margin:14px 0 6px">Serving homes &amp; businesses across North&nbsp;Carolina.
+                </h2>
+                <p class="lede">If you're within our service area, we can usually get a truck to you the same week. Not
+                    sure if you're covered? Give us a call — the answer's almost always yes.</p>
+                <!-- TODO: replace these with the towns/counties you actually serve -->
+                <div class="chips">
+                    <span class="chip">Your County</span>
+                    <span class="chip">Nearby Town</span>
+                    <span class="chip">Nearby Town</span>
+                    <span class="chip">Nearby Town</span>
+                    <span class="chip">Nearby County</span>
+                    <span class="chip">Nearby County</span>
+                    <span class="chip">+ surrounding areas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ REVIEWS ============ -->
+    <section class="block surface" id="reviews" data-depth="GRADE">
+        <div class="wrap">
+            <div class="sect-head" style="text-align:center;margin-inline:auto">
+                <span class="eyebrow" style="margin-inline:auto">— From the neighborhood</span>
+                <h2 class="h-sect">People keep our number<br>saved in their phone.</h2>
+            </div>
+            <!-- TODO: replace with your real Google/Facebook reviews -->
+            <div class="rev-grid">
+                <article class="rev">
+                    <div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg></div>
+                    <p>“Called in the morning, pumped that same afternoon. Crew was polite, explained what they were
+                        seeing in the tank, and left the yard spotless. Couldn't ask for more.”</p>
+                    <div class="who"><span class="av">SR</span>
+                        <div><b>Sample Reviewer</b><small>Sample, NC · Replace me</small></div>
+                    </div>
+                </article>
+                <article class="rev">
+                    <div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg></div>
+                    <p>“Honest pricing and no pressure to add stuff I didn't need. They found a cracked filter, showed
+                        it to me, and swapped it for a fair price. Will use again.”</p>
+                    <div class="who"><span class="av">SR</span>
+                        <div><b>Sample Reviewer</b><small>Sample, NC · Replace me</small></div>
+                    </div>
+                </article>
+                <article class="rev">
+                    <div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z" />
+                        </svg></div>
+                    <p>“Had a backup on a weekend and they still came out. Fast, professional, and they actually
+                        explained how to keep it from happening again. Highly recommend.”</p>
+                    <div class="who"><span class="av">SR</span>
+                        <div><b>Sample Reviewer</b><small>Sample, NC · Replace me</small></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PARALLAX PHOTO BAND 2 ============ -->
+    <!-- PLACEHOLDER PHOTO (license-free, generic) — swap seed URL for a real photo (truck, tank, or local home) -->
+    <section class="band" style="background-image:url('https://picsum.photos/seed/ncpro-home/1920/900')"
+        aria-label="Reliable septic service you can schedule">
+        <div class="wrap">
+            <span class="eyebrow">— Built for the long haul</span>
+            <h2>A system that's cared for can last decades.</h2>
+            <p>Skip the maintenance and you're looking at backups, repairs, or a full replacement. A regular pump-out is
+                the cheapest insurance your property has.</p>
+        </div>
+    </section>
+
+    <!-- ============ CTA + FORM ============ -->
+    <section class="block cta" id="contact" data-depth="SURFACE">
+        <div class="wrap cta-grid">
+            <div>
+                <span class="eyebrow">— Don't wait for the backup</span>
+                <h2>Due for a pump-out?<br>Let's get ahead of it.</h2>
+                <p>Most tanks need service every 3–5 years. If it's been longer than that — or something already smells
+                    off — the cheapest fix is the one you make before it overflows.</p>
+                <!-- TODO: replace phone number -->
+                <a class="cta-phone" href="tel:+1XXXXXXXXXX">
+                    <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+                        </svg></span>
+                    <span>(XXX) XXX-XXXX<small>Tap to call · Mon–Sat</small></span>
+                </a>
+            </div>
+
+            <div class="form-card">
+                <form id="leadForm" novalidate>
+                    <h3>Request service</h3>
+                    <p class="fc-sub">Send a few details and we'll text or call you back with a time.</p>
+                    <div class="field-row">
+                        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text"
+                                placeholder="Your name" required></div>
+                        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel"
+                                placeholder="(000) 000-0000" required></div>
+                    </div>
+                    <div class="field"><label for="f-addr">Property address or town</label><input id="f-addr"
+                            name="address" type="text" placeholder="Street, town, NC" required></div>
+                    <div class="field"><label for="f-svc">What do you need?</label>
+                        <select id="f-svc" name="service">
+                            <option value="">Select a service…</option>
+                            <option>Septic tank pumping</option>
+                            <option>Inspection / report</option>
+                            <option>Repair or replacement</option>
+                            <option>New system install</option>
+                            <option>Drain field issue</option>
+                            <option>Commercial / grease trap</option>
+                            <option>Emergency — backup now</option>
+                        </select>
+                    </div>
+                    <div class="field"><label for="f-msg">Anything else? (optional)</label><textarea id="f-msg"
+                            name="message" rows="3" placeholder="Last pumped, symptoms, gate code, etc."></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Send request
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z" />
+                        </svg>
+                    </button>
+                    <p class="form-note">We'll never share your info. Reply by phone or text.</p>
+                </form>
+                <div class="form-ok" id="formOk">
+                    <div class="ok-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg></div>
+                    <b>Request received</b>
+                    <span>This is a demo form. Connect it to your email/SMS backend to receive live submissions.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="foot">
+        <div class="foot-glow" aria-hidden="true"></div>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div>
+                    <a href="#top" class="brand">
+                        <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#04222b"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2.5c3.6 4.2 6 7 6 10a6 6 0 0 1-12 0c0-3 2.4-5.8 6-10Z" />
+                            </svg></span>
+                        <span>NC<b>·</b>PRO SEPTIC<small>PUMPING &amp; SERVICE · NC</small></span>
+                    </a>
+                    <p class="foot-about">Licensed, insured septic pumping, inspection and repair for homes and
+                        businesses across North Carolina.</p>
+                    <div class="socials">
+                        <a href="https://www.facebook.com/ncprosepticpumpers" target="_blank" rel="noopener"
+                            aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div>
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="#services">Tank pumping</a></li>
+                        <li><a href="#services">Inspections</a></li>
+                        <li><a href="#services">Repairs</a></li>
+                        <li><a href="#services">Installs</a></li>
+                        <li><a href="#services">Drain fields</a></li>
+                        <li><a href="#services">Commercial</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#process">How it works</a></li>
+                        <li><a href="#why">Why us</a></li>
+                        <li><a href="#area">Service area</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#contact">Request service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Get in touch</h5>
+                    <!-- TODO: replace all contact details below -->
+                    <ul class="foot-contact">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+                            </svg><a href="tel:+1XXXXXXXXXX">(XXX) XXX-XXXX</a></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" />
+                                <path d="m22 7-10 5L2 7" />
+                            </svg><a href="mailto:info@example.com">info@yourdomain.com</a></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg><span>Serving North Carolina &amp; surrounding areas</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M12 7v5l3 2" />
+                            </svg><span>Mon–Sat · Emergency service available</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>© <span id="yr"></span> NC-Pro Septic · All rights reserved</span>
+                <span>NC Permit #XXXXX · Built for the field</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- mobile sticky call bar -->
+    <div class="mobicall">
+        <a class="btn btn-primary" href="tel:+1XXXXXXXXXX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+            </svg>Call now</a>
+        <a class="btn btn-ghost" style="color:#dff3f8" href="#contact">Request</a>
+    </div>
+
+    <script>
+        (function () {
+            "use strict";
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            /* current year */
+            var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
+
+            /* nav scroll state */
+            var nav = document.getElementById('nav');
+            function onScrollNav() { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+            onScrollNav();
+
+            /* mobile menu */
+            var toggle = document.getElementById('navToggle');
+            var links = document.getElementById('navLinks');
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    var open = links.classList.toggle('open');
+                    nav.classList.toggle('open-menu', open);
+                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
+                links.querySelectorAll('a').forEach(function (a) {
+                    a.addEventListener('click', function () { links.classList.remove('open'); nav.classList.remove('open-menu'); toggle.setAttribute('aria-expanded', 'false'); });
+                });
+            }
+
+            /* build depth rail ticks from sections with data-depth */
+            var railLine = document.getElementById('railLine');
+            var marked = Array.prototype.slice.call(document.querySelectorAll('[data-depth]'));
+            marked.forEach(function (sec) {
+                var t = document.createElement('div');
+                t.className = 'rail-tick';
+                t.innerHTML = '<i></i><span>' + sec.getAttribute('data-depth') + '</span>';
+                t.dataset.target = sec.id;
+                railLine.appendChild(t);
+            });
+            var ticks = Array.prototype.slice.call(railLine.querySelectorAll('.rail-tick'));
+            function placeTicks() {
+                var h = railLine.getBoundingClientRect().height;
+                var docH = document.documentElement.scrollHeight - window.innerHeight;
+                ticks.forEach(function (t) {
+                    var sec = document.getElementById(t.dataset.target);
+                    var top = sec.offsetTop;
+                    var ratio = Math.max(0, Math.min(1, top / docH));
+                    t.style.top = (ratio * h) + 'px';
+                });
+            }
+            placeTicks();
+            window.addEventListener('resize', placeTicks);
+
+            /* parallax + progress (rAF throttled) */
+            var cutaway = document.getElementById('cutaway');
+            var hero = document.getElementById('hero');
+            var ticking = false;
+            function frame() {
+                var y = window.scrollY;
+                onScrollNav();
+                /* hero cutaway parallax */
+                if (cutaway && !reduce) {
+                    var hb = hero.getBoundingClientRect();
+                    if (hb.bottom > 0) { cutaway.style.transform = 'translateY(' + (y * 0.28) + 'px)'; }
+                }
+                /* rail progress */
+                var docH = document.documentElement.scrollHeight - window.innerHeight;
+                var prog = docH > 0 ? (y / docH) * 100 : 0;
+                railLine.style.setProperty('--prog', prog + '%');
+                /* active tick */
+                var mid = y + window.innerHeight * 0.4;
+                var activeId = null;
+                marked.forEach(function (sec) { if (sec.offsetTop <= mid) activeId = sec.id; });
+                ticks.forEach(function (t) { t.classList.toggle('on', t.dataset.target === activeId); });
+                ticking = false;
+            }
+            window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+            frame();
+
+            /* reveal on scroll */
+            if ('IntersectionObserver' in window && !reduce) {
+                var revealEls = document.querySelectorAll('.card, .step, .stat, .rev, .sect-head, .why-row, .gauge');
+                revealEls.forEach(function (el, i) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(22px)';
+                    el.style.transition = 'opacity .6s cubic-bezier(.2,.7,.2,1) ' + ((i % 6) * 0.05) + 's, transform .6s cubic-bezier(.2,.7,.2,1) ' + ((i % 6) * 0.05) + 's';
+                });
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; io.unobserve(e.target); }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+                revealEls.forEach(function (el) { io.observe(el); });
+            }
+
+            /* floating droplets in hero */
+            var dripWrap = document.getElementById('droplets');
+            if (dripWrap && !reduce) {
+                for (var i = 0; i < 14; i++) {
+                    var d = document.createElement('span');
+                    d.className = 'droplet';
+                    var left = Math.random() * 100;
+                    var size = 4 + Math.random() * 6;
+                    var dur = 6 + Math.random() * 7;
+                    var delay = Math.random() * 8;
+                    d.style.left = left + '%';
+                    d.style.width = d.style.height = size + 'px';
+                    d.style.animation = 'rise ' + dur + 's linear ' + delay + 's infinite';
+                    dripWrap.appendChild(d);
+                }
+                var style = document.createElement('style');
+                style.textContent = '@keyframes rise{0%{opacity:0;transform:translateY(40px) rotate(45deg)}10%{opacity:.5}90%{opacity:.5}100%{opacity:0;transform:translateY(-60vh) rotate(45deg)}}';
+                document.head.appendChild(style);
+            }
+
+            /* lead form (demo) — wire action/fetch to your backend to go live */
+            var form = document.getElementById('leadForm');
+            var ok = document.getElementById('formOk');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    var name = form.querySelector('#f-name');
+                    var phone = form.querySelector('#f-phone');
+                    var addr = form.querySelector('#f-addr');
+                    var bad = false;
+                    [name, phone, addr].forEach(function (f) {
+                        if (!f.value.trim()) { f.style.borderColor = '#ff8a8a'; bad = true; }
+                        else { f.style.borderColor = ''; }
+                    });
+                    if (bad) return;
+                    /* TODO: send to your endpoint, e.g.:
+                       fetch('/api/send', {method:'POST', headers:{'Content-Type':'application/json'},
+                         body: JSON.stringify(Object.fromEntries(new FormData(form)))});
+                    */
+                    form.style.display = 'none';
+                    ok.classList.add('show');
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>
